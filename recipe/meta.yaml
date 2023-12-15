@@ -1,5 +1,5 @@
 {% set name = "syntheseus" %}
-{% set version = "0.2.0" %}
+{% set version = "0.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/microsoft/syntheseus/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: bd7806e04bbc80dbfc7be089b9b0c67e67ad7602266c647f00f529332d53f771
+  sha256: 544ed505b98aa21b6dea022957f71b48168b151b5f030a47321dae9d75d9f65b
 
 build:
   noarch: python
