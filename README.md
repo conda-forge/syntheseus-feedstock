@@ -1,11 +1,11 @@
-About syntheseus-feedstock
-==========================
+About syntheseus-pkg-feedstock
+==============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/syntheseus-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/microsoft/syntheseus
 
-Package license: MIT
+Package license: MIT AND Apache-2.0 AND BSD-2-Clause
 
 Summary: Benchmarking Chemical Synthesis Planning Algorithms
 
@@ -34,27 +34,34 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus-green.svg)](https://anaconda.org/conda-forge/syntheseus) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus.svg)](https://anaconda.org/conda-forge/syntheseus) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus.svg)](https://anaconda.org/conda-forge/syntheseus) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus.svg)](https://anaconda.org/conda-forge/syntheseus) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--chemformer-green.svg)](https://anaconda.org/conda-forge/syntheseus-chemformer) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-chemformer.svg)](https://anaconda.org/conda-forge/syntheseus-chemformer) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-chemformer.svg)](https://anaconda.org/conda-forge/syntheseus-chemformer) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-chemformer.svg)](https://anaconda.org/conda-forge/syntheseus-chemformer) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--local--retro-green.svg)](https://anaconda.org/conda-forge/syntheseus-local-retro) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-local-retro.svg)](https://anaconda.org/conda-forge/syntheseus-local-retro) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-local-retro.svg)](https://anaconda.org/conda-forge/syntheseus-local-retro) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-local-retro.svg)](https://anaconda.org/conda-forge/syntheseus-local-retro) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--megan-green.svg)](https://anaconda.org/conda-forge/syntheseus-megan) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-megan.svg)](https://anaconda.org/conda-forge/syntheseus-megan) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-megan.svg)](https://anaconda.org/conda-forge/syntheseus-megan) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-megan.svg)](https://anaconda.org/conda-forge/syntheseus-megan) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--mhnreact-green.svg)](https://anaconda.org/conda-forge/syntheseus-mhnreact) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-mhnreact.svg)](https://anaconda.org/conda-forge/syntheseus-mhnreact) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-mhnreact.svg)](https://anaconda.org/conda-forge/syntheseus-mhnreact) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-mhnreact.svg)](https://anaconda.org/conda-forge/syntheseus-mhnreact) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--pysmilesutils-green.svg)](https://anaconda.org/conda-forge/syntheseus-pysmilesutils) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-pysmilesutils.svg)](https://anaconda.org/conda-forge/syntheseus-pysmilesutils) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-pysmilesutils.svg)](https://anaconda.org/conda-forge/syntheseus-pysmilesutils) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-pysmilesutils.svg)](https://anaconda.org/conda-forge/syntheseus-pysmilesutils) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--retro--knn-green.svg)](https://anaconda.org/conda-forge/syntheseus-retro-knn) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-retro-knn.svg)](https://anaconda.org/conda-forge/syntheseus-retro-knn) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-retro-knn.svg)](https://anaconda.org/conda-forge/syntheseus-retro-knn) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-retro-knn.svg)](https://anaconda.org/conda-forge/syntheseus-retro-knn) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-syntheseus--viz-green.svg)](https://anaconda.org/conda-forge/syntheseus-viz) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/syntheseus-viz.svg)](https://anaconda.org/conda-forge/syntheseus-viz) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/syntheseus-viz.svg)](https://anaconda.org/conda-forge/syntheseus-viz) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/syntheseus-viz.svg)](https://anaconda.org/conda-forge/syntheseus-viz) |
 
-Installing syntheseus
-=====================
+Installing syntheseus-pkg
+=========================
 
-Installing `syntheseus` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `syntheseus-pkg` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `syntheseus` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `syntheseus, syntheseus-chemformer, syntheseus-local-retro, syntheseus-megan, syntheseus-mhnreact, syntheseus-pysmilesutils, syntheseus-retro-knn, syntheseus-viz` can be installed with `conda`:
 
 ```
-conda install syntheseus
+conda install syntheseus syntheseus-chemformer syntheseus-local-retro syntheseus-megan syntheseus-mhnreact syntheseus-pysmilesutils syntheseus-retro-knn syntheseus-viz
 ```
 
 or with `mamba`:
 
 ```
-mamba install syntheseus
+mamba install syntheseus syntheseus-chemformer syntheseus-local-retro syntheseus-megan syntheseus-mhnreact syntheseus-pysmilesutils syntheseus-retro-knn syntheseus-viz
 ```
 
 It is possible to list all of the versions of `syntheseus` available on your platform with `conda`:
@@ -124,17 +131,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating syntheseus-feedstock
-=============================
+Updating syntheseus-pkg-feedstock
+=================================
 
-If you would like to improve the syntheseus recipe or build a new
+If you would like to improve the syntheseus-pkg recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/syntheseus-feedstock are
+Note that all branches in the conda-forge/syntheseus-pkg-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
