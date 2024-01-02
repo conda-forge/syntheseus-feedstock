@@ -24,6 +24,7 @@ outputs:
       host:
         - pip
         - python >=3.7
+        - setuptools_scm
       run:
         - networkx
         - numpy
