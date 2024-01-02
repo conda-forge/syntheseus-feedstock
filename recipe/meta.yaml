@@ -2,33 +2,63 @@
 {% set version = "0.3.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-pkg
   version: {{ version }}
 
 source:
-  url: https://github.com/microsoft/syntheseus/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 544ed505b98aa21b6dea022957f71b48168b151b5f030a47321dae9d75d9f65b
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/syntheseus-{{ version }}.tar.gz
+  sha256: 28a105cafdf896bf129dbd290b0034def5b6151435dae477a81890cdf2db3d95
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
-  number: 0
+  number: 1
 
-requirements:
-  host:
-    - pip
-    - python >=3.7
-  run:
-    - networkx
-    - numpy
-    - python >=3.7
-    - rdkit
+outputs:
+  - name: {{ name }}
+    script: build-pkg.sh
+    build:
+      noarch: python
+      entry_points:
+        - {{ name }} = {{ name }}.cli.main:main
 
-test:
-  imports:
-    - syntheseus
-    - syntheseus.interface
-    - syntheseus.search
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+        - setuptools >=45
+        - setuptools-scm >=6.2
+      run:
+        - networkx
+        - numpy
+        - more-itertools
+        - omegaconf
+        - python >=3.7
+        - rdkit
+        - tqdm
+
+    test:
+      commands:
+        - command -v syntheseus
+      imports:
+        - syntheseus
+        - syntheseus.interface
+        - syntheseus.search
+
+  - name: {{ name }}-viz
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - {{ name }} =={{ version }}
+        - pillow
+        - python-graphviz
+
+    test:
+      commands:
+        - command -v syntheseus
+      imports:
+        - syntheseus
+        - syntheseus.interface
+        - syntheseus.search
 
 about:
   home: https://github.com/microsoft/syntheseus
