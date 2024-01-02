@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/microsoft/syntheseus/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 5aa7d882195e5467598e6d4f5c252bb8bb768725e7f216df17525ec909c97131
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/syntheseus-{{ version }}.tar.gz
+  sha256: 28a105cafdf896bf129dbd290b0034def5b6151435dae477a81890cdf2db3d95
 
 build:
   number: 1
@@ -24,11 +24,12 @@ outputs:
       host:
         - pip
         - python >=3.7
-        - setuptools_scm
+        - setuptools >=45
+        - setuptools-scm >=6.2
       run:
         - networkx
         - numpy
-        - more_itertools
+        - more-itertools
         - omegaconf
         - python >=3.7
         - rdkit
