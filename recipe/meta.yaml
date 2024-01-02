@@ -6,11 +6,28 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/syntheseus-{{ version }}.tar.gz
-  sha256: 28a105cafdf896bf129dbd290b0034def5b6151435dae477a81890cdf2db3d95
+  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/syntheseus-{{ version }}.tar.gz
+    sha256: 28a105cafdf896bf129dbd290b0034def5b6151435dae477a81890cdf2db3d95
+    folder: {{ name }}
+  - url: https://pypi.io/packages/source/s/syntheseus-chemformer/syntheseus-chemformer-0.1.1.tar.gz
+    sha256: afc8b4d469ec16d593b7650394443ae53056166911ae0eb85d3956e0ee7761ba
+    folder: {{ name }}-chemformer
+  - url: https://pypi.io/packages/source/s/syntheseus-local-retro/syntheseus-local-retro-0.1.0.tar.gz
+    sha256: 49710d00b5c3869cff7e42925ce0f4ad2218a36ec5bae2b7b6a4712f0adf200d
+    folder: {{ name }}-local-retro
+  - url: https://pypi.io/packages/source/s/syntheseus-megan/syntheseus-megan-0.1.0.tar.gz
+    sha256: c3a9d6dba402593851174e5f1b8fcb39087d2944e0f7bedc8b6a404bb35533bf
+    folder: {{ name }}-megan
+  - url: https://pypi.io/packages/source/s/syntheseus-mhnreact/syntheseus-mhnreact-1.0.tar.gz
+    sha256: d36ebcf3433684d828eb9b1c89d433aa60dd26143c6a48d29ea1d83f08e5b8c8
+    folder: {{ name }}-mhnreact
+  - url: https://pypi.io/packages/source/s/syntheseus-pysmilesutils/syntheseus-PySMILESutils-1.1.0.tar.gz
+    sha256: 7eb2fb6f29e6851ed3e4d7f1d2265898460b06786875d4fae25ce93e896c453f
+    folder: {{ name }}-pysmilesutils
 
 build:
-  number: 1
+  number: 2
+  noarch: python
 
 outputs:
   - name: {{ name }}
@@ -48,7 +65,7 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - {{ name }} =={{ version }}
+        - {{ pin_subpackage(name, exact=True) }}
         - pillow
         - python-graphviz
 
@@ -60,6 +77,115 @@ outputs:
         - syntheseus.interface
         - syntheseus.search
 
+  - name: {{ name }}-chemformer
+    script: build-chemformer.sh
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+        - {{ pin_subpackage(name + "-pysmilesutils", exact=True) }}
+        - python >=3.7
+        - pytorch-lightning ==1.9.4
+
+    test:
+      imports:
+        - chemformer
+
+  - name: {{ name }}-local-retro
+    script: build-local-retro.sh
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+        - chardet
+        - dgllife
+        - python >=3.7
+
+    test:
+      imports:
+        - local_retro
+
+  - name: {{ name }}-megan
+    script: build-megan.sh
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python
+        - pip
+      run:
+        - python
+        - gin-config ==0.3.0
+        - gitpython
+        - tensorflow ==2.13.1
+        - torchtext
+        - scipy
+
+    test:
+      imports:
+        - megan
+
+  - name: {{ name }}-mhnreact
+    script: build-mhnreact.sh
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python >=3.7
+        - pip
+      run:
+        - python >=3.7
+        - scikit-learn
+        - scipy
+        - swifter
+        - tqdm
+        - wandb
+
+    test:
+      imports:
+        - mhnreact
+
+  - name: {{ name }}-pysmilesutils
+    script: build-pysmilesutils.sh
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+        - python >=3.7
+
+    test:
+      imports:
+        - pysmilesutils
+
+  - name: {{ name }}-retro-knn
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - {{ pin_subpackage(name, exact=True) }}
+        - {{ name }}-local-retro =={{ version }}
+        - python >=3.7
+        - torch-scatter
+
+    test:
+      imports:
+        - syntheseus
+
 about:
   home: https://github.com/microsoft/syntheseus
   summary: Benchmarking Chemical Synthesis Planning Algorithms
@@ -68,9 +194,14 @@ about:
     of common search algorithms and a simple API to wrap custom reaction models and
     write custom algorithms. It is meant to allow for simple benchmarking of
     the components of retrosynthesis algorithms.
-  license: MIT
-  license_family: MIT
-  license_file: LICENSE
+  license: MIT AND Apache-2.0 AND BSD-2-Clause
+  license_file:
+    - syntheseus/LICENSE  # MIT
+    - syntheseus-chemformer/LICENSE  # Apache-2.0
+    - syntheseus-local-retro/LICENSE  # Apache-2.0
+    - syntheseus-megan/LICENSE  # MIT
+    - syntheseus-mhnreact/LICENSE  # BSD-2-Clause
+    - syntheseus-pysmilesutils/LICENSE  # Apache-2.0
 
 extra:
   recipe-maintainers:
