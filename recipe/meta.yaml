@@ -1,5 +1,5 @@
 {% set name = "syntheseus" %}
-{% set version = "0.6.0" %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name|lower }}-pkg
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/syntheseus-{{ version }}.tar.gz
-  sha256: 59b82c47acf5385a740a5e6b0555e69054c23b608528f3147df083ec407ac6a9
+  sha256: 2484ded58c6bc932ac5bef59972c5d85dc20c3436883d91a2b44f5e90e6f95b5
 
 build:
   number: 0
